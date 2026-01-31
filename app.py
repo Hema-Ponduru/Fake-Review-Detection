@@ -2,7 +2,7 @@ import streamlit as st
 import time
 import matplotlib.pyplot as plt
 
-# ---------------- Page Config ----------------
+#  Page Config  
 st.set_page_config(
     page_title="Deceptive Review Detection",
     page_icon="🕵️",
@@ -13,7 +13,7 @@ st.title("🕵️ Deceptive Review Detection System")
 
 st.divider()
 
-# ---------------- Input ----------------
+#  Input  
 review = st.text_area(
     "✍️ Enter a review to analyze",
     height=130,
@@ -29,7 +29,7 @@ if st.button("🔍 Analyze Review"):
 
         text = review.lower()
 
-        # -------- Simulated Deceptive Logic --------
+        #  Simulated Deceptive Logic  
         deceptive_terms = [
             "best ever", "must buy", "guaranteed",
             "life changing", "everyone must"
@@ -45,7 +45,7 @@ if st.button("🔍 Analyze Review"):
         llm_prob = 0.05 if deceptive_score < 2 else 0.80
         hybrid_prob = round((0.7 * ml_prob + 0.3 * llm_prob), 2)
 
-        # -------- Final Prediction --------
+        # Final Prediction 
         final_label = "GENUINE" if hybrid_prob < 0.5 else "DECEPTIVE"
         confidence = (1 - hybrid_prob) * 100 if final_label == "GENUINE" else hybrid_prob * 100
 
@@ -60,7 +60,7 @@ if st.button("🔍 Analyze Review"):
 
         st.divider()
 
-        # ---------------- Graph ----------------
+        #  Graph 
         st.subheader("📈 Model Score Comparison")
 
         models = ["ML", "LLM", "Hybrid"]
@@ -76,7 +76,7 @@ if st.button("🔍 Analyze Review"):
 
         st.divider()
 
-        # ---------------- Recommendation ----------------
+        #  Recommendation  
         st.subheader("💡 Recommendation")
 
         if final_label == "GENUINE":
